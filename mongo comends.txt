@@ -1,0 +1,17 @@
+*****show dbs*****
+
+*****use test1 (create new or enter to an exsits)*****
+
+*****show collections*****
+
+*****db.createCollection(post)*****
+
+*****db.post.insert({"first name":"menachem"})*****
+
+***** db.posts.find().pretty()******
+
+*****db.posts.find({category: 'Technology'}).pretty()*****
+
+*****  db.posts.find({category: 'Technology'}).count()*****
+
+***** db.posts.find().forEach(function(doc) { print('Blog Post: ' + doc.title) })*****

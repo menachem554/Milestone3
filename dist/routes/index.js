@@ -1,16 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.main = void 0;
 // const isPrime = require('prime-number');
 const { primes, isPrime } = require('prime-num');
-// eslint-disable-next-line import/prefer-default-export
-const main = (app) => {
+exports.default = (app) => {
     // Post prime number
     app.post('/api/numbers/prime/validate', (req, res) => {
         const allNumbers = Object.values(req.body);
         let prime = true;
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < allNumbers.length; i++) {
+        for (let i = 0; i < allNumbers.length; i += 1) {
             if (!isPrime(allNumbers[i])) {
                 prime = false;
                 console.log(allNumbers[i]);
@@ -27,7 +24,6 @@ const main = (app) => {
             res.status(400).send('The number should be between 1-32');
         }
         else {
-            // eslint-disable-next-line no-plusplus
             for (let i = inputUser; i < 32; i++) {
                 primeNumbers.splice(primeNumbers.length - 1, 1);
             }
@@ -46,10 +42,18 @@ const main = (app) => {
         const prime8 = primesTen[7];
         const prime9 = primesTen[8];
         const prime10 = primesTen[9];
-        res.render('index', { prime1, prime2,
-            prime3, prime4, prime5, prime6,
-            prime7, prime8, prime9, prime10 });
+        res.render('index', {
+            prime1,
+            prime2,
+            prime3,
+            prime4,
+            prime5,
+            prime6,
+            prime7,
+            prime8,
+            prime9,
+            prime10,
+        });
     });
 };
-exports.main = main;
 //# sourceMappingURL=index.js.map

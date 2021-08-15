@@ -20,6 +20,7 @@ module.exports = {
         singleQuote: true,
         semi: true,
         camelcase: false,
+        'no-plusplus': false,
       },
     ],
     'no-console': 0,
