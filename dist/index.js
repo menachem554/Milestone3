@@ -35,6 +35,7 @@ dotenv_1.default.config();
 const port = process.env.SERVER_PORT;
 const app = express_1.default();
 app.use(express_1.default.json());
+app.set('view engine', 'pug');
 app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 // Configure routes
 routes.main(app);
