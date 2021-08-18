@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable import/extensions */
 /* eslint-disable prettier/prettier */
 /* eslint-disable import/no-unresolved */

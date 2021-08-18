@@ -1,52 +1,82 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable prettier/prettier */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable prettier/prettier */
 const express_1 = __importDefault(require("express"));
+const author_1 = __importDefault(require("../models/author"));
 const router = express_1.default.Router();
-const Author = require('../models/author');
-// Getting all
-router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/firstName/:firstName', async (req, res) => {
     try {
-        const author = yield Author.find({ firstName: 'author' });
-        res.send(author);
+        const authorFinded = await author_1.default.findOne({ firstName: req.params.firstName }).populate('bookList');
+        res.send(authorFinded.bookList);
     }
     catch (err) {
         res.status(500).json({ message: err.message });
     }
-}));
-// Getting one
-router.get('/:id', (req, res) => {
-    res.send(req.params.id);
 });
-// Creating one
-router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const author = new Author({
+router.get('/', async (_req, res) => {
+    const authorFinded = await author_1.default.find();
+    res.send(authorFinded);
+});
+router.post('/newAuthor', async (req, res) => {
+    const author = new author_1.default({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        birthDate: req.body.birthDate
+        birthDate: req.body.birthDate,
+        bookList: req.body.bookList
     });
     try {
-        const newAuthor = yield author.save();
+        const newAuthor = await author.save();
         res.status(201).json(newAuthor);
     }
     catch (err) {
         res.status(400).json({ message: err.message });
     }
-}));
-module.exports = router;
+});
+router.get('/filter', async (_req, res) => {
+    try {
+        const authorFilter = await author_1.default.aggregate([
+            {
+                '$match': {
+                    'firstName': {
+                        '$regex': new RegExp('^p.*$'),
+                        '$options': 'i'
+                    }
+                }
+            }, {
+                '$lookup': {
+                    'from': 'books',
+                    'localField': 'bookList',
+                    'foreignField': '_id',
+                    'as': 'books'
+                }
+            }, {
+                '$unwind': {
+                    'path': '$books'
+                }
+            }, {
+                '$match': {
+                    'books.pagesNumbers': {
+                        '$gte': 200
+                    },
+                    'books.publicationDate': {
+                        '$gte': 2015,
+                        '$lt': 2020
+                    }
+                }
+            }, {
+                '$project': {
+                    'bookName': '$books.bookName',
+                    'author': '$firstName'
+                }
+            }
+        ]);
+        res.json(authorFilter);
+    }
+    catch (err) {
+        res.json({ message: err });
+    }
+});
+exports.default = router;
 //# sourceMappingURL=author.js.map

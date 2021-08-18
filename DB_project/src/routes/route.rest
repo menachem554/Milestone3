@@ -1,11 +1,11 @@
 
-GET http://localhost:3000/author/firstName/Paul Benjamin
+GET http://localhost:3000/author/firstName/Naftaly
 
 ###
 GET http://localhost:3000/author/filter
 
 ###
-GET http://localhost:3000/books/Description/Fade
+GET http://localhost:3000/books/Description/Third
 
 ###
 GET http://localhost:3000/books/pages/250
@@ -16,10 +16,10 @@ POST http://localhost:3000/author/newAuthor
 Content-Type: application/json
 
 {
-    "firstName": "Paul Benjamin",
-    "lastName": "Auster",
-    "birthDate": "04/01/1947",
-    "bookList": ["611c9d20c364d45aec2e2de3","611c9ccec364d45aec2e2de1","611c9cb7c364d45aec2e2ddf","611bd3a2ce918f41c402f3a8","611b7be5851fc6430801dd16"]
+    "firstName": "Naftaly",
+    "lastName": "Benet",
+    "birthDate": "04/01/1972",
+    "bookList": ["611cdf73d01bfa0d64759655"]
 }
 
 ###
@@ -28,9 +28,9 @@ POST http://localhost:3000/books/create
 Content-Type: application/json
 
 {
-    "bookName": "Children go to school",
-    "bookDescription": "About the kids going to school",
+    "bookName": "how to beat covid19",
+    "bookDescription": "finish wit the covid19",
     "publicationDate": "2021",
-    "author": "Paul Benjamin Auster",
+    "author": "Naftaly Benet ",
     "pagesNumbers":275
 }

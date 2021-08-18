@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable prettier/prettier */
 const mongoose_1 = __importDefault(require("mongoose"));
 const authorSchema = new mongoose_1.default.Schema({
     firstName: {
@@ -16,9 +15,13 @@ const authorSchema = new mongoose_1.default.Schema({
     },
     birthDate: {
         type: Date,
-        required: true,
-        // default: Date.now,
+        default: Date.now,
     },
-});
-module.exports = mongoose_1.default.model('author', authorSchema);
+    bookList: [{
+            type: mongoose_1.default.Schema.Types.ObjectId,
+            require: true,
+            ref: 'books'
+        }]
+}, { versionKey: false });
+exports.default = mongoose_1.default.model('authors', authorSchema);
 //# sourceMappingURL=author.js.map

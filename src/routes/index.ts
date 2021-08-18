@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-plusplus */
 /* eslint-disable prettier/prettier */
 import * as express from 'express';
