@@ -1,0 +1,23 @@
+// Get books of author by is name
+GET http://localhost:3000/author/firstName/Paul Benjamin
+
+// Filter specific type of author and book 
+GET http://localhost:3000/author/filter
+
+// Get a book by the Description or name 
+GET http://localhost:3000/books/Description/Fade
+
+// Get book with number of pages
+GET http://localhost:3000/books/pages/250
+
+// Get all authors
+GET http://localhost:3000/author
+
+// Creating new author
+POST http://localhost:3000/author/newAuthor
+
+// Create new book
+POST http://localhost:3000/books/create
+
+
+

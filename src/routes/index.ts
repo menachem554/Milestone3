@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable prettier/prettier */
 import * as express from 'express';
 
 // const isPrime = require('prime-number');
