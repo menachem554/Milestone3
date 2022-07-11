@@ -1,19 +1,22 @@
 
+  
 GET http://localhost:3000/author/firstName/Naftaly
 
 ###
+
 GET http://localhost:3000/author/filter
 
 ###
+
 GET http://localhost:3000/books/Description/Third
 
 ###
+
 GET http://localhost:3000/books/pages/250
 
 ###
 
-POST http://localhost:3000/author/newAuthor
-Content-Type: application/json
+POST http://localhost:3000/author/newAuthor 
 
 {
     "firstName": "Naftaly",
@@ -24,13 +27,8 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/books/create
-Content-Type: application/json
+POST http://localhost:3000/books/create Content-Type: application/json
 
 {
-    "bookName": "how to beat covid19",
-    "bookDescription": "finish wit the covid19",
-    "publicationDate": "2021",
-    "author": "Naftaly Benet ",
-    "pagesNumbers":275
+"bookName": "how to beat covid19", "bookDescription": "finish wit the covid19", "publicationDate": "2021", "author": "Naftaly Benet ", "pagesNumbers":275
 }
